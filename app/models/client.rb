@@ -18,7 +18,7 @@ class Client < ActiveRecord::Base
     # - pick the last( 5 )
     def self.most_active
         Client.all.sort_by{ | client | client.number_of_returned_rentals }.last( 5 )
-        
+
         # FIRST SOLUTION:
         # clients_sorted_by_returns = Client.all.sort_by{ | client | client.number_of_returned_rentals }
         # clients_sorted_by_returns.last( 5 )
@@ -36,5 +36,40 @@ class Client < ActiveRecord::Base
         # - use max_by to find the most frequently occuring genre in all_my_genres
         all_my_genres.max_by{ | genre | all_my_genres.count( genre ) }
     end
+
+    #helper method for non_grata. returns true if a client instance has a past_due? rental
+    def has_past_due?
+      !self.rentals.find{|rental| rental.past_due?}.nil?
+    end
+
+    #creating an array of all the client instances where has_past_due? is true.
+    def self.non_grata
+      Client.all.select{|client| client.has_past_due?}
+    end
+
+    #call max_by on Client.all finding the client with the most rentals
+    def self.paid_most
+      Client.all.max_by{|client| client.rentals.length }
+    end
+
+    #helper for total_watch_time. returns a sum of a particular clients movie length watched.
+    def my_total_watch_time
+      all_my_vhs = self.rentals.map( &:vhs )
+      all_my_movies = all_my_vhs.map{ | vhs | Movie.find( vhs.movie_id ) }
+      all_my_movies.sum{|movie| movie.length}
+    end
+
+    #returns the sum of all my_total_watch_time(s)
+    def self.total_watch_time
+      Client.all.sum(&:my_total_watch_time)
+    end
+
+    # def return_one(vhs)
+    #   this_rental = Rental.find(vhs_id: vhs.id)
+    #   Rental.update(this_rental.id, current: false)
+    # end
+
+
+
 
 end
