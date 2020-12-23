@@ -18,14 +18,14 @@ You will be working on a six-model domain: `Client`, `Rental`, `Vhs`, `Movie`, `
 - #Rental belongs to a client and vhs,
 - #Client has many rentals and vhs through rentals.
 
---- 
+---
 
 ## ERD
 
-**NOTE** that the below ERD does not include foreign keys -- these you need to add on your own, together with the association macros. 
+**NOTE** that the below ERD does not include foreign keys -- these you need to add on your own, together with the association macros.
 
 ```
-  Client 
+  Client
     |
     ^
   Rental                  
@@ -37,7 +37,7 @@ You will be working on a six-model domain: `Client`, `Rental`, `Vhs`, `Movie`, `
 
 ![Domain model](erd.png)
 
---- 
+---
 
 ## Getting Started
 
@@ -48,7 +48,7 @@ You will be working on a six-model domain: `Client`, `Rental`, `Vhs`, `Movie`, `
 
 **NOTE ABOUT THE SEEDS**: the `seed`s have been commented out -- uncomment it once you've built out your migrations and associations. It is advisable that you create the migrations in the order that `destroy_all` follow in the `seed`s file. Also, as you can see in the file, `seed`s rely on a significant amount of randomness so if you work with another person and do not share the same database, you WILL get different results in terms of number of associated instances or number of instances in general.
 
-5. Now that you know what is missing, DO NOT CODE JUST YET. Discuss with your partner the plan for the setup: what are you going to do step by step and how are you going to test if it worked. 
+5. Now that you know what is missing, DO NOT CODE JUST YET. Discuss with your partner the plan for the setup: what are you going to do step by step and how are you going to test if it worked.
 6. You must have noticed that one of the models is called `Vhs`. In `rake console` run:
 ```ruby
 'vhs'.pluralize
@@ -70,7 +70,7 @@ end
 
 **NOTE**: all deliverables will make you a strong dev and will allow you for a good practice on ActiveRecord. Please spend some time on this lab, together with your partner or on your own. This lab can also be developed into a CLI that can serve as a strong portfolio piece or blog post material.
 
---- 
+---
 
 ## Functionality
 
@@ -83,20 +83,20 @@ Build the following functionality:
 
 ### `Client`
 **CREATE**
-- `Client.first_rental` - accepts and instance of arguments needed to create a new `Client` instance and a currently available `Vhs` instance (or, more difficult: a `Movie` instance or just a `Movie` title and on that basis chooses a currently available vhs); it creates a new `Client` instance and a new `Rental` instance with `current` set to true.
+- `Client.first_rental` - accepts an instance of arguments needed to create a new `Client` instance and a currently available `Vhs` instance (or, more difficult: a `Movie` instance or just a `Movie` title and on that basis chooses a currently available vhs); it creates a new `Client` instance and a new `Rental` instance with `current` set to true.
 
 
 **READ**
 - `Client.most_active` - returns a list of top 5 most active clients (i.e. those who had the most non-current / returned rentals)
 - `Client#favorite_genre` ⭐️ - `puts` the name of the genre that the client rented the most; in counting how many times a person watched a genre, you can treat two rentals of the same movie as two separate instances;
 - `Client.non_grata` - returns a list of all the clients who have a vhs past the due date (or, more difficult: who ever missed the return date)
-- `Client.paid_most` - returns an instance who has spent most money at the store; one rental is $5,35 upfront (bonus: additional $12 charge for every late return — do not count those that have not yet been returned) 
+- `Client.paid_most` - returns an instance who has spent most money at the store; one rental is $5,35 upfront (bonus: additional $12 charge for every late return — do not count those that have not yet been returned)
 - `Client.total_watch_time` - returns an Integer of all movies watched by the all clients combined (assume that a rented movie is a watched movie)
 
 
 **UPDATE**
 - `Client#return_one` - accepts an argument of an vhs instance, finds the corresponding rental and updates the rental's `current` attribute from `true` to `false`
-- `Client#return_all`- updates `current` attribute from `true` to `false` on all client's rentals 
+- `Client#return_all`- updates `current` attribute from `true` to `false` on all client's rentals
 
 
 **UPDATE AND DELETE**
