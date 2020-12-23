@@ -9,22 +9,14 @@ class Rental < ActiveRecord::Base
        self.created_at.to_date + 7
     end
 
-    #helper method for self.past_due_date
+    #helper method for self.past_due_date - tells us if this rental is past due
     def past_due?
       self.updated_at.to_date > self.due_date
-
     end
 
     #selects all the rental instances where past_due? is true.
     def self.past_due_date
       Rental.all.select{ |rental| rental.past_due?  }
     end
-
-    
-
-
-
-
-
 
 end
