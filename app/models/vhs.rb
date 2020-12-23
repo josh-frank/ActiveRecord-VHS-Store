@@ -1,5 +1,10 @@
 class Vhs < ActiveRecord::Base
     after_initialize :add_serial_number
+    # Vhs belongs to a movie,
+    # - Vhs has many rentals and clients through rentals,
+    belongs_to :movie
+    has_many :rentals
+    has_many :clients, through: :rentals
 
 
     private

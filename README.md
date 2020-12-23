@@ -9,14 +9,14 @@ Welcome to your good old neighborhood VHS store. You will build an app that trac
 ## Associations
 
 You will be working on a six-model domain: `Client`, `Rental`, `Vhs`, `Movie`, `MovieGenre`, `Genre`. The associations are as follows:
-- Genre has many movie_genres and movies through movie_genres,
-- MovieGenre belongs to a movie and a genre,
-- Movie has many movie_genres and genres through movie_genres,
-- Movie has many vhs and rentals through vhs,
-- Vhs belongs to a movie,
-- Vhs has many rentals and clients through rentals,
-- Rental belongs to a client and vhs,
-- Client has many rentals and vhs through rentals.
+- #Genre has many movie_genres and movies through movie_genres,
+- #MovieGenre belongs to a movie and a genre,
+- #Movie has many movie_genres and genres through movie_genres,
+- #Movie has many vhs and rentals through vhs,
+- #Vhs belongs to a movie,
+- #Vhs has many rentals and clients through rentals,
+- #Rental belongs to a client and vhs,
+- #Client has many rentals and vhs through rentals.
 
 --- 
 
