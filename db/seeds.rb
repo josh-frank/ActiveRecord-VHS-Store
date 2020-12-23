@@ -1,15 +1,15 @@
-# MovieGenre.destroy_all
-# Rental.destroy_all
-# Vhs.destroy_all
+MovieGenre.destroy_all
+Rental.destroy_all
+Vhs.destroy_all
 Client.destroy_all
-# Genre.destroy_all
-# Movie.destroy_all
-# MovieGenre.reset_pk_sequence
-# Rental.reset_pk_sequence
-# Vhs.reset_pk_sequence
+Genre.destroy_all
+Movie.destroy_all
+MovieGenre.reset_pk_sequence
+Rental.reset_pk_sequence
+Vhs.reset_pk_sequence
 Client.reset_pk_sequence
-# Genre.reset_pk_sequence
-# Movie.reset_pk_sequence
+Genre.reset_pk_sequence
+Movie.reset_pk_sequence
 
 
 def create_movie_joins(movie, genre_array)
@@ -19,27 +19,27 @@ end
 ####### GENRES ########
 puts "✨ creating genres... ✨"
 
-# action = Genre.create(name: "action")
-# adaptation = Genre.create(name: "adaptation")
-# adventure = Genre.create(name: "adventure")
-# animation = Genre.create(name: "animation")
-# biography = Genre.create(name: "biography")
-# comedy = Genre.create(name: "comedy")
-# crime = Genre.create(name: "crime")
-# docudrama = Genre.create(name: "docudrama")
-# documentary = Genre.create(name: "documentary")
-# drama = Genre.create(name: "drama")
-# fantasy = Genre.create(name: "fantasy")
-# historical_period_drama = Genre.create(name: "historical period drama")
-# history = Genre.create(name: "history")
-# horror = Genre.create(name: "horror")
-# melodrama = Genre.create(name: "melodrama")
-# mystery = Genre.create(name: "mystery")
-# romance = Genre.create(name: "romance")
-# sci_fi = Genre.create(name: "sci-fi")
-# sport = Genre.create(name: "sport")
-# thriller = Genre.create(name: "thriller")
-# war = Genre.create(name: "war")
+action = Genre.create(name: "action")
+adaptation = Genre.create(name: "adaptation")
+adventure = Genre.create(name: "adventure")
+animation = Genre.create(name: "animation")
+biography = Genre.create(name: "biography")
+comedy = Genre.create(name: "comedy")
+crime = Genre.create(name: "crime")
+docudrama = Genre.create(name: "docudrama")
+documentary = Genre.create(name: "documentary")
+drama = Genre.create(name: "drama")
+fantasy = Genre.create(name: "fantasy")
+historical_period_drama = Genre.create(name: "historical period drama")
+history = Genre.create(name: "history")
+horror = Genre.create(name: "horror")
+melodrama = Genre.create(name: "melodrama")
+mystery = Genre.create(name: "mystery")
+romance = Genre.create(name: "romance")
+sci_fi = Genre.create(name: "sci-fi")
+sport = Genre.create(name: "sport")
+thriller = Genre.create(name: "thriller")
+war = Genre.create(name: "war")
 
 ####### MOVIES ########
 puts "✨ creating movies and movie_genres... ✨"
@@ -117,7 +117,7 @@ puts "✨ creating movies and movie_genres... ✨"
 # alien = Movie.create(
 #             title: "Alien",
 #             year: 1979,
-#             length: 117,  
+#             length: 117,
 #             director: "Ridley Scott",
 #             description: "Groundbreaking for 1979 science fiction, Sigourney Weaver’s Ellen Ripley is one of the genre’s most iconic female characters. She’s not a damsel—she’s a badass final girl and the only survivor to defeat the monster that mutilated and destroyed every other member of the Nostromo crew.",
 #             female_director: false
@@ -177,9 +177,9 @@ puts "✨ creating movies and movie_genres... ✨"
 ####### CLIENTS ########
 puts "✨ creating clients... ✨"
 
-# 20.times do 
+# 20.times do
 #     name = [
-#         Faker::Movies::HitchhikersGuideToTheGalaxy.character, 
+#         Faker::Movies::HitchhikersGuideToTheGalaxy.character,
 #         Faker::TvShows::TwinPeaks.character,
 #         Faker::TvShows::TheFreshPrinceOfBelAir.character,
 #         Faker::TvShows::RuPaul.queen,
@@ -187,7 +187,7 @@ puts "✨ creating clients... ✨"
 #     ].sample
 #     puts "🍿 #{name}, welcome to our sick vhs store!"
 #     Client.create(
-#         name: name, 
+#         name: name,
 #         home_address: Faker::Address.full_address
 #     )
 # end
@@ -195,7 +195,7 @@ puts "✨ creating clients... ✨"
 ####### VHS ########
 puts "✨ creating vhs... ✨"
 
-# 60.times do 
+# 60.times do
 #     random_movie_id = rand(1..Movie.all.count)
 #     Vhs.create(movie_id: random_movie_id)
 # end

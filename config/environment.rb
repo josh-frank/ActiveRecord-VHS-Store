@@ -7,6 +7,10 @@ ActiveRecord::Base.establish_connection(
   database: "db/development.sqlite"
 )
 
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'vhs', 'vhs'
+end
+
 # enables logging in console whenever ActiveRecord writes SQL for us
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 
