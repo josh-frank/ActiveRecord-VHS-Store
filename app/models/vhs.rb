@@ -6,6 +6,38 @@ class Vhs < ActiveRecord::Base
     has_many :rentals
     has_many :clients, through: :rentals
 
+    def self.hot_from_the_press(genre_name, movie_arg)
+        find_genre = Genre.where(name: genre_name)
+        if find_genre.empty?
+            this_genre = Genre.create(name: genre_name)
+        else
+            this_genre = find_genre.first
+        end
+        new_movie = Movie.create(movie_arg)
+        MovieGenre.create(movie_id: new_movie.id, genre_id: this_genre.id)
+        3.times{Vhs.create(movie_id: new_movie.id)}
+    end
+
+    def rental_count
+      Rental.all.count {|rental| rental.vhs_id == self.id }
+    end
+
+    def self.most_used
+      three_most_rented = Vhs.all.sort_by{|tape| tape.rental_count }.last(3)
+      three_most_rented.each do |tape|
+        puts "serial number: #{tape.serial_number} | title: #{Movie.find(tape.movie_id).title}"
+      end
+    end
+
+    #accesses all current rentals. Vhs.find goes into rentals to pull the current vhs id.
+    #enumerates through all returned rentals and uses Vhs.find to pull out the correct vhs object/instance for each rental.
+    def self.available_now
+      all_returned_rentals = Rental.where(current: false)
+      all_returned_rentals.map{|rental| Vhs.find(rental.vhs_id)}
+    end
+
+
+
 
     private
 
@@ -31,18 +63,6 @@ class Vhs < ActiveRecord::Base
         return self.movie.title.split(" ")[1][0..3].gsub(/s/, "").upcase + "-" if two_part_title?
         return self.movie.title.gsub(/s/, "").upcase + "-" unless long_title?
         self.movie.title[0..3].gsub(/s/, "").upcase + "-"
-    end
-
-    def self.hot_from_the_press(genre_name, movie_arg)
-        find_genre = Genre.where(name: genre_name)
-        if find_genre.empty?
-            this_genre = Genre.create(name: genre_name)
-        else 
-            this_genre = find_genre.first
-        end
-        new_movie = Movie.create(movie_arg)
-        MovieGenre.create(movie_id: new_movie.id, genre_id: this_genre.id)
-        3.times{Vhs.create(movie_id: new_movie.id)}
     end
 
 end
