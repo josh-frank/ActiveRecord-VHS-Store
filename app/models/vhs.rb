@@ -32,4 +32,17 @@ class Vhs < ActiveRecord::Base
         return self.movie.title.gsub(/s/, "").upcase + "-" unless long_title?
         self.movie.title[0..3].gsub(/s/, "").upcase + "-"
     end
+
+    def self.hot_from_the_press(genre_name, movie_arg)
+        find_genre = Genre.where(name: genre_name)
+        if find_genre.empty?
+            this_genre = Genre.create(name: genre_name)
+        else 
+            this_genre = find_genre.first
+        end
+        new_movie = Movie.create(movie_arg)
+        MovieGenre.create(movie_id: new_movie.id, genre_id: this_genre.id)
+        3.times{Vhs.create(movie_id: new_movie.id)}
+    end
+
 end

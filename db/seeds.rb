@@ -218,8 +218,8 @@ end
 20.times do
     number_of_vhs_rented_at_once = rand(1..3)
     client_id = random_client_id
-    vhs_id = find_vhs_id_for_rent
     number_of_vhs_rented_at_once.times do
+        vhs_id = find_vhs_id_for_rent
         Rental.create(client_id: client_id, vhs_id: vhs_id, current: true)
     end
 end
@@ -247,5 +247,5 @@ returned_late_number.times do
     rental.update(current: false,  created_at: rented_date, updated_at: returned_date)
 end
 
-# binding.pry
+binding.pry
 puts "📼 📼 📼 📼 SEEDED 📼 📼 📼 📼 "

@@ -64,10 +64,21 @@ class Client < ActiveRecord::Base
       Client.all.sum(&:my_total_watch_time)
     end
 
-    # def return_one(vhs)
-    #   this_rental = Rental.find(vhs_id: vhs.id)
-    #   Rental.update(this_rental.id, current: false)
-    # end
+    def return_one(vhs)
+      this_rental = Rental.find_by(vhs_id: vhs.id)
+      Rental.update(this_rental.id, current: false)
+    end
+
+    def return_all
+      self.rentals.each{|rental| Rental.update(rental.id, current: false)}
+    end
+
+    def last_return
+      self.return_all
+      self.destroy
+    end
+
+
 
 
 
