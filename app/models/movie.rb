@@ -37,9 +37,24 @@ class Movie < ActiveRecord::Base
     def self.longest
         Movie.order( length: :desc )
     end
-
+  
     def recommendation
         one_hundred_seventeen_emojis = "😀😃😄😁😆😅😂🤣😊😇🙂🙃😉😌😍🥰😘😗😙😚😋😛😝😜🤪🤨🧐🤓😎🤩🥳😏😒😞😔😟😕🙁☹️😣😖😫😩🥺😢😭😤😠😡🤬🤯😳🥵🥶😱😨😰😥😓🤗🤔🤭🤫🤥😶😐😑😬🙄😯😦😧😮😲🥱😴🤤😪😵🤐🥴🤢🤮🤧😷🤒🤕🤑🤠😈👿👹👺🤡💩👻💀☠️👽👾🤖🎃😺😸😹😻😼😽🙀😿😾"
+        puts "#{one_hundred_seventeen_emojis[rand(0...117)]} #{self.title}"
+        puts "#{self.description}"
+        puts "#{self.length}"
+        puts "#{self.director}"
+        puts "#{self.year}"
+    end
+    
+    def self.surprise_me
+        Movie.all.sample.recommendation
+    end
+   
+    def report_stolen
+        stolen_tape = Vhs.available_now.select{|tape| tape.movie_id == self.id}.sample.destroy
+        puts "THANK YOU FOR YOUR REPORT. WE WILL LAUNCH AN INVESTIGATION."
+        stolen_tape
     end
 
 end
