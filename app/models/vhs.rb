@@ -36,8 +36,9 @@ class Vhs < ActiveRecord::Base
       all_returned_rentals.map{|rental| Vhs.find(rental.vhs_id)}
     end
 
-
-
+    def self.all_genres
+      Vhs.available_now.map{ | tape | Movie.find( tape.movie_id ).genres }.flatten.uniq
+    end
 
     private
 
